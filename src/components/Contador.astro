@@ -1,0 +1,106 @@
+<div
+  id="countdown-timer"
+  class="flex gap-3 md:gap-6 text-center justify-center"
+>
+  <div
+    class="flex flex-col bg-white border border-slate-100 shadow-[0_4px_20px_rgb(0,0,0,0.03)] p-4 rounded-2xl w-20 md:w-24"
+  >
+    <span
+      id="days"
+      class="text-3xl md:text-4xl font-light tracking-tight text-slate-900"
+      >00</span
+    >
+    <span
+      class="text-[10px] md:text-xs uppercase tracking-widest text-slate-400 mt-1 font-bold"
+      >Días</span
+    >
+  </div>
+
+  <div
+    class="flex flex-col bg-white border border-slate-100 shadow-[0_4px_20px_rgb(0,0,0,0.03)] p-4 rounded-2xl w-20 md:w-24"
+  >
+    <span
+      id="hours"
+      class="text-3xl md:text-4xl font-light tracking-tight text-slate-900"
+      >00</span
+    >
+    <span
+      class="text-[10px] md:text-xs uppercase tracking-widest text-slate-400 mt-1 font-bold"
+      >Horas</span
+    >
+  </div>
+
+  <div
+    class="flex flex-col bg-white border border-slate-100 shadow-[0_4px_20px_rgb(0,0,0,0.03)] p-4 rounded-2xl w-20 md:w-24"
+  >
+    <span
+      id="minutes"
+      class="text-3xl md:text-4xl font-light tracking-tight text-slate-900"
+      >00</span
+    >
+    <span
+      class="text-[10px] md:text-xs uppercase tracking-widest text-slate-400 mt-1 font-bold"
+      >Min</span
+    >
+  </div>
+
+  <div
+    class="flex flex-col bg-white border border-slate-100 shadow-[0_4px_20px_rgb(0,0,0,0.03)] p-4 rounded-2xl w-20 md:w-24"
+  >
+    <span
+      id="seconds"
+      class="text-3xl md:text-4xl font-light tracking-tight text-amber-500"
+      >00</span
+    >
+    <span
+      class="text-[10px] md:text-xs uppercase tracking-widest text-slate-400 mt-1 font-bold"
+      >Seg</span
+    >
+  </div>
+</div>
+
+<script>
+  const targetDate = new Date("2026-07-11T17:00:00").getTime();
+
+  const daysEl = document.getElementById("days") as HTMLSpanElement | null;
+  const hoursEl = document.getElementById("hours") as HTMLSpanElement | null;
+  const minutesEl = document.getElementById(
+    "minutes",
+  ) as HTMLSpanElement | null;
+  const secondsEl = document.getElementById(
+    "seconds",
+  ) as HTMLSpanElement | null;
+
+  function updateCountdown(): void {
+    const now = new Date().getTime();
+    const difference = targetDate - now;
+
+    if (difference <= 0) {
+      if (daysEl && hoursEl && minutesEl && secondsEl) {
+        daysEl.textContent = "00";
+        hoursEl.textContent = "00";
+        minutesEl.textContent = "00";
+        secondsEl.textContent = "00";
+      }
+      return;
+    }
+
+    const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+    const hours = Math.floor(
+      (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+    );
+    const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+    if (daysEl && hoursEl && minutesEl && secondsEl) {
+      daysEl.textContent = days.toString().padStart(2, "0");
+      hoursEl.textContent = hours.toString().padStart(2, "0");
+      minutesEl.textContent = minutes.toString().padStart(2, "0");
+      secondsEl.textContent = seconds.toString().padStart(2, "0");
+    }
+  }
+
+  // Ejecutamos inmediatamente y luego cada segundo
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+</script>

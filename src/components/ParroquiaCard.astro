@@ -1,0 +1,44 @@
+---
+import { ChurchIcon, ClockIcon, MapPinIcon } from "@lucide/astro";
+import separator from "../assets/separator.svg";
+import { Image } from "astro:assets";
+---
+
+<div
+  class="max-w-md mx-auto bg-white/90 rounded-3xl shadow-3xl shadow-red-main p-8 md:p-10 text-center"
+>
+  <div
+    class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#FAEFDF]/50 mb-6 border border-[#DAB87C]/30"
+  >
+    <ChurchIcon class="text-golden-main" size={28} />
+  </div>
+
+  <h3 class="text-2xl md:text-3xl font-serif text-slate-900 mb-4 tracking-wide">
+    Parroquía Inmaculada Concepción
+  </h3>
+
+  <Image src={separator} alt="" class="my-4" />
+  <p
+    class="text-sm font-light text-slate-500 mb-8 px-2 md:px-4 leading-relaxed"
+  >
+    Escuadrón 201, La Purísima Ticomán, Gustavo A. Madero, 07320 Ciudad de
+    México, CDMX
+  </p>
+
+  <div
+    class="flex items-center justify-center gap-3 mb-10 text-golden-main bg-golden-bg/50 py-3 px-6 rounded-2xl mx-auto w-fit"
+  >
+    <ClockIcon size={20} />
+    <span class="text-xl font-medium tracking-widest uppercase">5:00 PM</span>
+  </div>
+
+  <a
+    href="https://maps.app.goo.gl/KM8h9EC1n2zcG2HT7"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="inline-flex items-center justify-center gap-2 w-full py-4 bg-red-main text-white rounded-full font-medium tracking-wider uppercase text-sm hover:bg-[#ab7b26] hover:shadow-[0_8px_20px_rgba(194,140,46,0.3)] hover:-translate-y-0.5 transition-all duration-300"
+  >
+    <MapPinIcon size={20} />
+    Cómo llegar
+  </a>
+</div>

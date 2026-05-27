@@ -1,0 +1,55 @@
+---
+import { CrownIcon } from "@lucide/astro";
+
+// src/components/CalendarioJulio.astro
+
+// Generamos los días del 1 al 31 para Julio
+const dias = Array.from({ length: 31 }, (_, i) => i + 1);
+
+// Julio de 2026 empieza en Miércoles.
+// Dejamos 3 celdas vacías (Domingo, Lunes, Martes).
+const diasVacios = [0, 1, 2];
+---
+
+<div
+  class="max-w-md mx-auto bg-white p-8 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100"
+>
+  <div class="text-center mb-8">
+    <h3 class="text-3xl font-serif tracking-widest uppercase text-slate-900">
+      Julio 2026
+    </h3>
+    <div class="w-16 h-0.5 bg-slate-200 mx-auto mt-4"></div>
+  </div>
+
+  <div class="grid grid-cols-7 gap-2 text-center mb-4">
+    {
+      ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"].map((dia) => (
+        <span class="text-xs font-bold tracking-wider text-slate-400 uppercase">
+          {dia}
+        </span>
+      ))
+    }
+  </div>
+
+  <div class="grid grid-cols-7 gap-y-4 gap-x-2 text-center">
+    {diasVacios.map(() => <div class="p-2" />)}
+    {
+      dias.map((dia) => (
+        <div class="flex justify-center items-center">
+          {dia === 11 ? (
+            <div class="relative flex flex-col items-center justify-center w-12 h-14 bg-slate-50 border border-slate-200 rounded-xl shadow-sm transform scale-110 z-10">
+              <CrownIcon class="text-amber-500 mb-0.5" />
+              <span class="text-base font-bold text-slate-900 leading-none">
+                {dia}
+              </span>
+            </div>
+          ) : (
+            <div class="w-10 h-10 flex items-center justify-center text-slate-500 font-light hover:bg-slate-50 hover:text-slate-900 rounded-full transition-colors cursor-default">
+              {dia}
+            </div>
+          )}
+        </div>
+      ))
+    }
+  </div>
+</div>

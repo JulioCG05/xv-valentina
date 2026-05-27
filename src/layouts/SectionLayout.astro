@@ -1,0 +1,15 @@
+---
+import dotsPattern from "../assets/dots-2.svg";
+---
+
+<section class="bg-veige-bg relative space-y-12 px-4 py-16 overflow-hidden">
+  <div
+    class="absolute inset-0 z-0 pointer-events-none opacity-30 mix-blend-multiply bg-repeat animate-slide-up-left"
+    style={`background-image: url('${dotsPattern.src}');`}
+  >
+  </div>
+
+  <div class="relative z-10 flex flex-col space-y-12">
+    <slot />
+  </div>
+</section>

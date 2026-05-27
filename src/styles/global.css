@@ -1,0 +1,34 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Brittany";
+  src: url("/fonts/BrittanySignature.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --color-red-main: #651428;
+
+  --color-red-highlight: #821f1f;
+
+  --color-golden-main: #c3922e;
+  --color-golden-bg: #faefdf;
+  --color-veige-bg: #f8efde;
+
+  --shadow-red-main: 0 10px 25px rgb(60 8 5 / 0.85);
+
+  --font-brittany: "Brittany", cursive;
+
+  --animate-slide-up-left: slideUpLeft 45s linear infinite;
+}
+
+@keyframes slideUpLeft {
+  0% {
+    background-position: 0px 0px;
+  }
+  100% {
+    background-position: -900px -600px;
+  }
+}

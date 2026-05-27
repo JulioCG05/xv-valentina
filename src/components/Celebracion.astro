@@ -1,0 +1,52 @@
+---
+import { Image } from "astro:assets";
+import crown from "../assets/crown.png";
+import separator from "../assets/separator2.svg";
+import Separator2 from "./ui/Separator2.astro";
+import { CalendarIcon } from "@lucide/astro";
+
+const titulo = "XV Años Valentina";
+const detalles =
+  "¡Nos llenará de alegría que nos acompañes en esta noche mágica e inolvidable!";
+const ubicacion = "Parroquia Inmaculada Concepción / Jardín Verali";
+const fechaInicio = "20260711T170000";
+const fechaFin = "20260711T235900";
+const urlGoogleCalendar = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(titulo)}&dates=${fechaInicio}/${fechaFin}&details=${encodeURIComponent(detalles)}&location=${encodeURIComponent(ubicacion)}`;
+---
+
+<section
+  class="bg-veige-bg flex flex-col items-center justify-center p-4 text-center relative overflow-hidden font-serif"
+>
+  <div
+    class="max-w-lg flex flex-col items-center justify-center gap-4 mx-auto p-8 md:p-8 text-center w-full"
+  >
+    <Image src={crown} alt="Corona" class="w-48 md:w-64 object-contain" />
+
+    <h2
+      class="text-3xl text-golden-main md:text-4xl tracking-wider text-main-950 font-medium text-center uppercase"
+    >
+      Celebración
+    </h2>
+    <span class="tracking-widest uppercase text-golden-main font-sans">
+      SÁBADO
+    </span>
+    <div class="w-full grid grid-cols-3 items-center justify-center">
+      <Separator2> JULIO </Separator2>
+      <span
+        class="text-6xl leading-none text-golden-main -translate-y-2 font-sans"
+      >
+        11
+      </span>
+      <Separator2> 2026 </Separator2>
+    </div>
+    <a
+      href={urlGoogleCalendar}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="mt-4 inline-flex items-center justify-center gap-2 w-full py-4 bg-red-main text-white rounded-full font-medium tracking-wider uppercase text-sm hover:bg-[#ab7b26] hover:shadow-[0_8px_20px_rgba(194,140,46,0.3)] hover:-translate-y-0.5 transition-all duration-300"
+    >
+      <CalendarIcon size={20} />
+      Agendar
+    </a>
+  </div>
+</section>
