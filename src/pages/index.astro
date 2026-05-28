@@ -7,15 +7,28 @@ import ParroquiaCard from "../components/ParroquiaCard.astro";
 import JardinCard from "../components/JardinCard.astro";
 import SectionLayout from "../layouts/SectionLayout.astro";
 import HeroSection from "../components/ui/sections/HeroSection.astro";
+import Header2 from "../components/ui/Header2.astro";
+import DressCode from "../components/dress-code/DressCode.astro";
+import Gifts from "../components/gifts/Gifts.astro";
+import Album from "../components/album/Album.astro";
+import Confirmation from "../components/confirm/Confirmation.astro";
 ---
 
 <Layout>
   <HeroSection />
   <Celebracion />
-  <Contador />
-  <CalendiarioCard />
+
+  <section class="bg-[#3c0805] relative space-y-12 px-4 py-16 overflow-hidden">
+    <Contador />
+    <CalendiarioCard />
+  </section>
   <SectionLayout>
+    <Header2> Acompañame </Header2>
     <ParroquiaCard />
     <JardinCard />
   </SectionLayout>
+  <DressCode />
+  <Gifts />
+  <Album />
+  <Confirmation />
 </Layout>

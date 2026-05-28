@@ -1,0 +1,34 @@
+---
+import { CameraIcon, ImageIcon } from "@lucide/astro";
+import Header2 from "../ui/Header2.astro";
+import { Image } from "astro:assets";
+import qr from "../../assets/qr.jpeg";
+import separator from "../../assets/separator.svg";
+---
+
+<section class="bg-veige-bg relative space-y-12 px-4 py-16 overflow-hidden">
+  <div class="flex flex-col items-center justify-center gap-3">
+    <div class="flex items-center justify-center">
+      <CameraIcon class="text-golden-main" size={28} />
+    </div>
+    <Header2>Álbum Compartido</Header2>
+
+    <Image src={separator} alt="" class="my-4" />
+    <p class="text-center font-serif text-red-main">
+      Quiero revivir el día a través de tus ojos
+    </p>
+    <p class="text-center font-serif text-red-main">
+      ¡Escanea el código QR y sube las fotos o vídeos de la fiesta!
+    </p>
+    <Image src={qr} alt="QR" class="w-48 md:w-64 object-contain mb-4" />
+  </div>
+  <a
+    href="https://drive.google.com/drive/folders/1YiCwEfUzcOUIqQ7jkTTezMWaC1CM9ivn?usp=drive_link"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="inline-flex items-center justify-center gap-2 w-full py-4 bg-red-main text-white rounded-full font-medium tracking-wider uppercase text-sm hover:bg-[#ab7b26] hover:shadow-[0_8px_20px_rgba(194,140,46,0.3)] hover:-translate-y-0.5 transition-all duration-300"
+  >
+    <ImageIcon size={20} />
+    Subir Fotos
+  </a>
+</section>

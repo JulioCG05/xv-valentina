@@ -1,0 +1,88 @@
+---
+import { GiftIcon, XIcon } from "@lucide/astro";
+import Header2 from "../ui/Header2.astro";
+---
+
+<section class="bg-[#3c0805] relative space-y-12 px-4 py-16 overflow-hidden">
+  <div class="flex flex-col items-center justify-center gap-3">
+    <div class="flex items-center justify-center">
+      <GiftIcon class="text-golden-main" size={28} />
+    </div>
+    <Header2> Regalos</Header2>
+    <p class="text-center font-serif text-golden-main">
+      Si quieres darme algo mas que tu presencia...
+    </p>
+    <button
+      id="btn-abrir-regalos"
+      class="inline-flex items-center justify-center gap-2 w-full py-4 bg-golden-main text-[#3c0805] rounded-full font-medium tracking-wider uppercase text-sm hover:bg-[#ab7b26] hover:shadow-[0_8px_20px_rgba(194,140,46,0.3)] hover:-translate-y-0.5 transition-all duration-300"
+    >
+      Ver Más
+    </button>
+  </div>
+</section>
+
+<dialog
+  id="modal-regalos"
+  class="bg-transparent p-0 m-auto backdrop:bg-[#3c0805]/80 backdrop:backdrop-blur-sm transition-all duration-300 open:animate-fade-in"
+>
+  <div
+    class="bg-veige-bg p-4 rounded-3xl max-w-md w-[90vw] border border-golden-main/30 shadow-2xl relative text-center"
+  >
+    <div class="flex items-center justify-between">
+      <h3 class="text-2xl font-bold font-serif text-[#3c0805] tracking-wide">
+        Mesa de Regalos
+      </h3>
+      <button
+        id="btn-cerrar-modal"
+        class="text-[#3c0805] transition-colors bg-[#FAEFDF] rounded-full p-1"
+        aria-label="Cerrar modal"
+      >
+        <XIcon size={24} />
+      </button>
+    </div>
+
+    <p class="text-base font-light text-[#3c0805] mt-4 leading-relaxed">
+      Sí deseas tener un detalle conmigo y no tienes algo en mente, contaremos
+      con un buzón para lluvia de sobres en la recepción.
+    </p>
+  </div>
+</dialog>
+
+<script>
+  const btnAbrir = document.getElementById(
+    "btn-abrir-regalos",
+  ) as HTMLButtonElement | null;
+  const btnCerrar = document.getElementById(
+    "btn-cerrar-modal",
+  ) as HTMLButtonElement | null;
+  const modal = document.getElementById(
+    "modal-regalos",
+  ) as HTMLDialogElement | null;
+
+  if (btnAbrir && btnCerrar && modal) {
+    btnAbrir.addEventListener("click", () => {
+      modal.showModal();
+      document.body.style.overflow = "hidden";
+    });
+
+    const cerrarModal = () => {
+      modal.close();
+      document.body.style.overflow = "";
+    };
+
+    btnCerrar.addEventListener("click", cerrarModal);
+
+    modal.addEventListener("click", (evento: MouseEvent) => {
+      const rect = modal.getBoundingClientRect();
+
+      if (
+        evento.clientX < rect.left ||
+        evento.clientX > rect.right ||
+        evento.clientY < rect.top ||
+        evento.clientY > rect.bottom
+      ) {
+        cerrarModal();
+      }
+    });
+  }
+</script>

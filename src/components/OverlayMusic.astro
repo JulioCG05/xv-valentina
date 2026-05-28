@@ -1,37 +1,32 @@
+---
+import { Image } from "astro:assets";
+import sobrecito from "../assets/sobrecito.jpg";
+---
+
 <div
   id="welcome-overlay"
-  class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-slate-950 text-white transition-opacity duration-1000"
+  class="fixed inset-0 z-50 flex flex-col items-center justify-center transition-opacity duration-1000 cursor-pointer"
 >
-  <h1 class="text-4xl font-serif mb-8 tracking-widest text-center">
-    Estás Invitado
-  </h1>
-
-  <button
-    id="start-btn"
-    class="px-8 py-4 text-xl border border-white/50 rounded-full hover:bg-white hover:text-slate-950 transition-all duration-500 shadow-[0_0_15px_rgba(255,255,255,0.2)] hover:shadow-[0_0_30px_rgba(255,255,255,0.6)]"
-  >
-    Abrir Invitación
-  </button>
+  <Image
+    src={sobrecito}
+    alt="Abrir invitación"
+    class="absolute inset-0 w-full h-full object-fill z-0"
+  />
 </div>
 
 <script>
-  // Buscamos los elementos asegurando su tipado sin usar "any"
-  const btn = document.getElementById("start-btn") as HTMLButtonElement | null;
   const overlay = document.getElementById(
     "welcome-overlay",
   ) as HTMLDivElement | null;
-  // Buscamos el audio que está en el Layout global
   const audio = document.getElementById("bg-music") as HTMLAudioElement | null;
 
-  if (btn && overlay && audio) {
-    btn.addEventListener("click", () => {
-      // Preparamos el volumen en 0
+  if (overlay && audio) {
+    overlay.addEventListener("click", () => {
       audio.volume = 0;
 
       audio
         .play()
         .then(() => {
-          // Fade-in de la música
           let currentVolume = 0;
           const fadeInterval = setInterval(() => {
             if (currentVolume < 0.9) {
@@ -42,7 +37,6 @@
             }
           }, 200);
 
-          // Ocultamos el overlay
           overlay.classList.add("opacity-0");
           overlay.classList.add("pointer-events-none");
 
@@ -56,3 +50,60 @@
     });
   }
 </script>
+
+<!-- ---
+import { Image } from "astro:assets";
+import sobrecito from "../assets/sobrecito.jpg";
+---
+
+<div
+  id="welcome-overlay"
+  class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-slate-950 text-white transition-opacity duration-1000"
+>
+  <Image src={sobrecito} alt="sobrecito" />
+
+  <button
+    id="start-btn"
+    class="px-8 py-4 text-xl border border-white/50 rounded-full hover:bg-white hover:text-slate-950 transition-all duration-500 shadow-[0_0_15px_rgba(255,255,255,0.2)] hover:shadow-[0_0_30px_rgba(255,255,255,0.6)]"
+  >
+    Abrir Invitación
+  </button>
+</div>
+
+<script>
+  const btn = document.getElementById("start-btn") as HTMLButtonElement | null;
+  const overlay = document.getElementById(
+    "welcome-overlay",
+  ) as HTMLDivElement | null;
+  const audio = document.getElementById("bg-music") as HTMLAudioElement | null;
+
+  if (btn && overlay && audio) {
+    btn.addEventListener("click", () => {
+      audio.volume = 0;
+
+      audio
+        .play()
+        .then(() => {
+          let currentVolume = 0;
+          const fadeInterval = setInterval(() => {
+            if (currentVolume < 0.9) {
+              currentVolume += 0.1;
+              audio.volume = Math.round(currentVolume * 10) / 10;
+            } else {
+              clearInterval(fadeInterval);
+            }
+          }, 200);
+
+          overlay.classList.add("opacity-0");
+          overlay.classList.add("pointer-events-none");
+
+          setTimeout(() => {
+            overlay.style.display = "none";
+          }, 1000);
+        })
+        .catch((error: unknown) => {
+          console.error("Error al reproducir el audio:", error);
+        });
+    });
+  }
+</script> -->

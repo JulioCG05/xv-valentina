@@ -1,9 +1,10 @@
 ---
 import { Image } from "astro:assets";
 import crown from "../assets/crown.png";
-import separator from "../assets/separator2.svg";
+import girl from "../assets/girl.jpg";
 import Separator2 from "./ui/Separator2.astro";
 import { CalendarIcon } from "@lucide/astro";
+import Header2 from "../components/ui/Header2.astro";
 
 const titulo = "XV Años Valentina";
 const detalles =
@@ -20,13 +21,15 @@ const urlGoogleCalendar = `https://calendar.google.com/calendar/render?action=TE
   <div
     class="max-w-lg flex flex-col items-center justify-center gap-4 mx-auto p-8 md:p-8 text-center w-full"
   >
+    <Image src={girl} alt="Vestido" class="w-48 md:w-64 object-contain mb-4" />
     <Image src={crown} alt="Corona" class="w-48 md:w-64 object-contain" />
 
-    <h2
-      class="text-3xl text-golden-main md:text-4xl tracking-wider text-main-950 font-medium text-center uppercase"
+    <!-- <h2
+      class="text-4xl md:text-5xl text-golden-main tracking-wider text-main-950 font-medium text-center uppercase"
     >
       Celebración
-    </h2>
+    </h2> -->
+    <Header2> Celebración </Header2>
     <span class="tracking-widest uppercase text-golden-main font-sans">
       SÁBADO
     </span>
@@ -46,7 +49,7 @@ const urlGoogleCalendar = `https://calendar.google.com/calendar/render?action=TE
       class="mt-4 inline-flex items-center justify-center gap-2 w-full py-4 bg-red-main text-white rounded-full font-medium tracking-wider uppercase text-sm hover:bg-[#ab7b26] hover:shadow-[0_8px_20px_rgba(194,140,46,0.3)] hover:-translate-y-0.5 transition-all duration-300"
     >
       <CalendarIcon size={20} />
-      Agendar
+      Agendar Fecha
     </a>
   </div>
 </section>
